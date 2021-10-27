@@ -1,0 +1,29 @@
+def writeLedState(ledstate='0'):   # default led state = 0
+    try:
+        ser.write(f'{ledstate}').encode('utf-8')
+    except Exception as e:
+        print('Write Timeout exceeded', e)
+
+
+def main():
+
+    motor = 'ready'
+
+    while motor:
+        ledInput = input("Enter Led State>>> ")
+        if ledInput.lower() == 'q':
+            break
+
+        elif (ledInput).isnumeric():
+            writeLedState(ledInput)
+        else:
+            print('Invalid Command Try Again')
+
+
+
+
+if __name__ == '__main__':
+    import time, serial
+    #ser = serial.Serial('/dev/ttyACM1',9600,timeout=1,write_timeout=1)
+    #ser.flush()
+    main()
